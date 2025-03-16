@@ -1,39 +1,21 @@
-// El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. 
-// Aquí deberás desarrollar la lógica para resolver el problema.
-let amigos = [];
+let amigos = []; //Array de nombres
 
-function asignarTextoElemento(elemento, texto) {
-    let elementoHTML = document.querySelector(elemento);
-    elementoHTML.innerHTML = texto;
-    return;
-}
 
-function limpiarCaja(){
-    document.querySelector('#amigo').value = '';
-}
-//Agregar nombres: Los usuarios escribirán el nombre de un amigo en un campo de texto y 
-// lo agregarán a una lista visible al hacer clic en "Adicionar".
-
-//Validar entrada: Si el campo de texto está vacío, el programa mostrará una alerta 
-// pidiendo un nombre válido.
+//Función para agregar nombres
 function agregarAmigo(){
     let nombre = document.getElementById('amigo').value;
-    //console.log(amigos);
-    if (nombre == ''){
+    
+    if (nombre == ''){                          //Verificar que se escriba un nombre
         alert('Por favor, inserte un nombre');
-    }
-    else {
-        amigos.push(nombre);
-        //console.log(amigos);
+    } else {
+        amigos.push(nombre);                    //Agrega el nombre al array
         actualizarLista();
         limpiarCaja();
     }
     return;
-    //asignarTextoElemento('p', amigos);
 }
 
-//Visualizar la lista: Los nombres ingresados aparecerán en una lista debajo del campo 
-// de entrada.
+// Función para actualizar la lista que se muestra
 function actualizarLista(){
     const lista = document.getElementById('listaAmigos');
     lista.innerHTML = amigos.map(amigo => `<li>${amigo}</li>`).join('');
@@ -41,10 +23,9 @@ function actualizarLista(){
 }
 
 
-//Sorteo aleatorio: Al hacer clic en el botón "Sortear Amigo", se seleccionará aleatoriamente 
-// un nombre de la lista y se mostrará en la página.
+//Función para sortear amigos
 function sortearAmigo() {
-    if (amigos.length == 0){
+    if (amigos.length == 0){                    //Verifica que haya algun valor en el array
         alert('Agrega amigos primero')
     } else {
         let indiceAleatorio = Math.floor(Math.random()*amigos.length);
@@ -59,3 +40,7 @@ function sortearAmigo() {
 }
 
 
+// Función para limpiar la caja de texto
+function limpiarCaja(){
+    document.querySelector('#amigo').value = '';
+}
