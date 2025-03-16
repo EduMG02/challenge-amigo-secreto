@@ -13,6 +13,9 @@ function limpiarCaja(){
 }
 //Agregar nombres: Los usuarios escribirán el nombre de un amigo en un campo de texto y 
 // lo agregarán a una lista visible al hacer clic en "Adicionar".
+
+//Validar entrada: Si el campo de texto está vacío, el programa mostrará una alerta 
+// pidiendo un nombre válido.
 function agregarAmigo(){
     let nombre = document.getElementById('amigo').value;
     //console.log(amigos);
@@ -21,7 +24,7 @@ function agregarAmigo(){
     }
     else {
         amigos.push(nombre);
-        console.log(amigos);
+        //console.log(amigos);
         actualizarLista();
         limpiarCaja();
     }
@@ -29,18 +32,30 @@ function agregarAmigo(){
     //asignarTextoElemento('p', amigos);
 }
 
-
+//Visualizar la lista: Los nombres ingresados aparecerán en una lista debajo del campo 
+// de entrada.
 function actualizarLista(){
     const lista = document.getElementById('listaAmigos');
     lista.innerHTML = amigos.map(amigo => `<li>${amigo}</li>`).join('');
     return;
 }
 
-//Validar entrada: Si el campo de texto está vacío, el programa mostrará una alerta 
-// pidiendo un nombre válido.
-
-//Visualizar la lista: Los nombres ingresados aparecerán en una lista debajo del campo 
-// de entrada.
 
 //Sorteo aleatorio: Al hacer clic en el botón "Sortear Amigo", se seleccionará aleatoriamente 
 // un nombre de la lista y se mostrará en la página.
+function sortearAmigo() {
+    if (amigos.length == 0){
+        alert('Agrega amigos primero')
+    } else {
+        let indiceAleatorio = Math.floor(Math.random()*amigos.length);
+
+        let amigoSorteado = amigos[indiceAleatorio];
+
+        let resultado = document.getElementById('resultado');
+        resultado.innerHTML = `Amigo sorteado: ${amigoSorteado}`;
+        amigos.splice(indiceAleatorio, 1);
+        actualizarLista();
+    }
+}
+
+
